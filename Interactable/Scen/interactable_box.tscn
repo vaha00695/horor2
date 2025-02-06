@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhcctconn7ro4"]
+
+[ext_resource type="Script" path="res://Interactable/Script/InteractableBox.gd" id="1_orpl8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yryqa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_t6n3g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0qeex"]
+
+[node name="InteractableBox" type="StaticBody3D" groups=["Interactable"]]
+script = ExtResource("1_orpl8")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_yryqa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_t6n3g")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_0qeex")

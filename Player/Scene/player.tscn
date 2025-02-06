@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dikb7kwwxr3vt"]
+
+[ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_wndnj"]
+[ext_resource type="PackedScene" uid="uid://dmlv5y06v0t03" path="res://Player/Scene/GameUI.tscn" id="2_ep4a4"]
+[ext_resource type="PackedScene" uid="uid://dwuhsyk2yjsp0" path="res://Interactable/Item/Flashlight/scen/flashlight.tscn" id="3_ro24w"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ml0o6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7uwq8"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_wndnj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_ml0o6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_7uwq8")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.953547, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+transform = Transform3D(0.999546, -0.00226891, -0.0300325, 0.00226789, 0.999997, -6.81434e-05, 0.0300326, 1.93667e-09, 0.999549, 0.00887186, 0.0202151, -0.49265)
+
+[node name="Ray" type="RayCast3D" parent="head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0147833, -0.0201949, -0.195085)
+target_position = Vector3(0, -2.595, 0)
+
+[node name="GameUI" parent="head/Camera3D" instance=ExtResource("2_ep4a4")]
+
+[node name="Flashlight" parent="head/Camera3D" instance=ExtResource("3_ro24w")]
+transform = Transform3D(0.999546, 0.00226789, 0.0300326, -0.00226891, 0.999997, 1.82626e-09, -0.0300325, -6.81433e-05, 0.999548, 0.741703, -0.405523, -0.946213)
